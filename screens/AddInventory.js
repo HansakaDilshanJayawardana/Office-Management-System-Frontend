@@ -45,7 +45,7 @@ const AddInventory = ({ navigation: { navigate } }) => {
                 textAlign: "center",
                 }}
             >
-                Add your new inventory items.
+                Add your new inventory items
             </Text>
         </View>
         <View
