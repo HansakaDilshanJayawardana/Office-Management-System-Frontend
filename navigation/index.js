@@ -12,6 +12,7 @@ import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
 import AppStack from "./AppStack";
+import AddInventory from "../screens/AddInventory";
 
 const theme = {
   ...DefaultTheme,
@@ -50,6 +51,7 @@ function RootNavigator() {
         component={AppStack}
         options={{headerShown: false}}
       />
+      <Stack.Screen name="AddInventory" component={AddInventory}/>
     </Stack.Navigator>
   );
 }
