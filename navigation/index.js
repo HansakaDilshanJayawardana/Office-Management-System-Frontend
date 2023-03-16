@@ -12,6 +12,7 @@ import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
 import AddInventory from "../screens/AddInventory";
+import AddEmployee from "../screens/AddEmployees";
 
 
 const theme = {
@@ -47,6 +48,7 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="AddInventory" component={AddInventory}/>
+      <Stack.Screen name="AddEmployee" component={AddEmployee}/>
     </Stack.Navigator>
   );
 }
