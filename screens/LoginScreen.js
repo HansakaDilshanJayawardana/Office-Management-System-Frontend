@@ -13,10 +13,11 @@ import Colors from "../constants/Colors";
 import Font from "../constants/Font";
 import { Ionicons } from "@expo/vector-icons";
 import AppTextInput from "../components/AppTextInput";
+import { ScrollView } from "react-native-gesture-handler";
 
 const LoginScreen = ({ navigation: { navigate } }) => {
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View
         style={{
           padding: Spacing * 2,
@@ -182,7 +183,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
         </View>
         </View>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

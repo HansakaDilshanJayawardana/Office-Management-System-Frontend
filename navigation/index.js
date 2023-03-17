@@ -11,8 +11,8 @@ import Colors from "../constants/Colors";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
+import AppStack from "./AppStack";
 import AddInventory from "../screens/AddInventory";
-
 
 const theme = {
   ...DefaultTheme,
@@ -46,6 +46,11 @@ function RootNavigator() {
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen
+        name="HomeScreen"
+        component={AppStack}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="AddInventory" component={AddInventory}/>
     </Stack.Navigator>
   );
