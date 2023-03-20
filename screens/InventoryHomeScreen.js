@@ -29,16 +29,81 @@ const InventoryHomeScreen = ({ navigation: { navigate } }) => {
             }}
         >
             <Text
-            style={{
-                fontSize: FontSize.xLarge,
-                color: Colors.primary,
-                fontFamily: Font["poppins-bold"],
-                marginVertical: Spacing * 3,
-            }}
+    style={{
+      fontSize: FontSize.xLarge,
+      color: Colors.primary,
+      fontFamily: Font["poppins-bold"],
+      marginVertical: Spacing * 3,
+    }}
+  >
+    Inventory Home Screen
+            </Text>
+            <Text
+                style={{
+                fontFamily: Font["poppins-regular"],
+                fontSize: FontSize.small,
+                maxWidth: "80%",
+                textAlign: "center",
+                }}
             >
-                Inventory Home Page
+                Welcome to the Invenories
             </Text>
         </View>
+
+        <TouchableOpacity
+        onPress={() => navigate("AddInventory")}
+        style={{
+            padding: Spacing * 2,
+            backgroundColor: Colors.primary,
+            marginVertical: Spacing * 3,
+            borderRadius: Spacing,
+            shadowColor: Colors.primary,
+            shadowOffset: {
+            width: 0,
+            height: Spacing,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: Spacing,
+        }}
+        >
+        <Text
+            style={{
+            fontFamily: Font["poppins-bold"],
+            color: Colors.onPrimary,
+            textAlign: "center",
+            fontSize: FontSize.large,
+            }}
+        >
+            Add Inventory
+        </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+        onPress={() => navigate("ViewInventory")}
+        style={{
+            padding: Spacing * 2,
+            backgroundColor: Colors.primary,
+            marginVertical: Spacing * 3,
+            borderRadius: Spacing,
+            shadowColor: Colors.primary,
+            shadowOffset: {
+            width: 0,
+            height: Spacing,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: Spacing,
+        }}
+        >
+        <Text
+            style={{
+            fontFamily: Font["poppins-bold"],
+            color: Colors.onPrimary,
+            textAlign: "center",
+            fontSize: FontSize.large,
+            }}
+        >
+            View Inventories
+        </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
