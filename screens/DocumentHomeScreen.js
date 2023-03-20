@@ -39,20 +39,27 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
             Document Home Page
           </Text>
         </View>
-        {/* //add document */}
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            // alignItems: "center",
-            marginBottom: Spacing * 2,
-            backgroundColor: Colors.light,
-          }}
+        {/* //add document */}
+        <TouchableOpacity
+
+        style={{
+          backgroundColor: Colors.lightPrimary,
+          padding: Spacing * 2,
+          borderRadius: 10,
+        }}
+
+          onPress={() => navigate("AddDocument")}
         >
-          <TouchableOpacity
-            onPress={() => navigate("DocumentAddScreen")}
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              // alignItems: "center",
+              backgroundColor: Colors.light,
+            }}
           >
+
             <Text
               style={{
                 fontSize: FontSize.large,
@@ -69,38 +76,9 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
               size={24}
               color={Colors.primary}
             />
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
 
-
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: Spacing * 2,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: FontSize.large,
-              color: Colors.darkText,
-              fontFamily: Font["poppins-regular"],
-            }}
-          >
-            Document List
-          </Text>
-          <TouchableOpacity
-            onPress={() => navigate("DocumentAddScreen")}
-          >
-            <Ionicons
-              name="add-circle-outline"
-              size={24}
-              color={Colors.primary}
-            />
-          </TouchableOpacity>
-
-        </View>
       </View>
     </ScrollView>
   );
