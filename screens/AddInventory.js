@@ -13,8 +13,40 @@ import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import Font from "../constants/Font";
 import AppTextInput from "../components/AppTextInput";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from '../config';
 
 const AddInventory = ({ navigation: { navigate } }) => {
+  const [name, setName] = useState("");
+  console.log(name);
+  const [quantity, setQuantity] = useState("");
+  console.log(quantity);
+  const [price, setPrice] = useState("");
+  console.log(price);
+  const [description, setDescription] = useState("");
+  console.log(description);
+
+  const addInventory = async () => {
+    const data = {
+      name: name,
+      quantity: quantity,
+      price: price,
+      description: description,
+    };
+ 
+    await axios.post(API_BASE_URL+'/inventory/add', data)
+    .then((res) => {
+      console.log(res.data);
+      if(res.data.success === true){
+        navigate("InventoryHomeScreen")
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    }
+
   return (
     <ScrollView>
       <View
@@ -53,10 +85,10 @@ const AddInventory = ({ navigation: { navigate } }) => {
             marginVertical: Spacing * 3,
         }}
         >
-        <AppTextInput placeholder="Name" />
-        <AppTextInput placeholder="Quantity" />
-        <AppTextInput placeholder="Price" />
-        <AppTextInput placeholder="Description" />
+        <AppTextInput placeholder="Name" onChangeText={ (e) => setName(e) } />
+        <AppTextInput placeholder="Quantity" onChangeText={ (e) => setQuantity(e) } />
+        <AppTextInput placeholder="Price" onChangeText={ (e) => setPrice(e) } />
+        <AppTextInput placeholder="Description" onChangeText={ (e) => setDescription(e) } />
         </View>
 
         <TouchableOpacity
@@ -73,6 +105,7 @@ const AddInventory = ({ navigation: { navigate } }) => {
             shadowOpacity: 0.3,
             shadowRadius: Spacing,
         }}
+        onPress={() => addInventory()}
         >
         <Text
             style={{
@@ -83,23 +116,6 @@ const AddInventory = ({ navigation: { navigate } }) => {
             }}
         >
             Add Now
-        </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-        onPress={() => navigate("Login")}
-        style={{
-            padding: Spacing,
-        }}
-        >
-        <Text
-            style={{
-            fontFamily: Font["poppins-semiBold"],
-            color: Colors.text,
-            textAlign: "center",
-            fontSize: FontSize.small,
-            }}
-        >
-            View Inventory
         </Text>
         </TouchableOpacity>
       </View>
