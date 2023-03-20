@@ -15,7 +15,7 @@ import ClientHomeScreen from '../screens/ClientHomeScreen';
 import DocumentHomeScreen from '../screens/DocumentHomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 
-import TabNavigator from './TabNavigator';
+// import TabNavigator from './TabNavigator';
 
 const Drawer = createDrawerNavigator();
 
