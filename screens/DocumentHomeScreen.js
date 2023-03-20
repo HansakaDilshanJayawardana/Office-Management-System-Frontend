@@ -24,20 +24,82 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
         }}
       >
         <View
-            style={{
-                alignItems: "center",
-            }}
+          style={{
+            alignItems: "center",
+          }}
         >
-            <Text
+          <Text
             style={{
-                fontSize: FontSize.xLarge,
-                color: Colors.primary,
-                fontFamily: Font["poppins-bold"],
-                marginVertical: Spacing * 3,
+              fontSize: FontSize.xLarge,
+              color: Colors.primary,
+              fontFamily: Font["poppins-bold"],
+              marginVertical: Spacing * 3,
             }}
+          >
+            Document Home Page
+          </Text>
+        </View>
+        {/* //add document */}
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            // alignItems: "center",
+            marginBottom: Spacing * 2,
+            backgroundColor: Colors.light,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => navigate("DocumentAddScreen")}
+          >
+            <Text
+              style={{
+                fontSize: FontSize.large,
+                color: Colors.darkText,
+                fontFamily: Font["poppins-regular"],
+              }}
             >
-                Document Home Page
+              Add Document
             </Text>
+
+            <Ionicons
+
+              name="add-circle-outline"
+              size={24}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
+        </View>
+
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: Spacing * 2,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: FontSize.large,
+              color: Colors.darkText,
+              fontFamily: Font["poppins-regular"],
+            }}
+          >
+            Document List
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigate("DocumentAddScreen")}
+          >
+            <Ionicons
+              name="add-circle-outline"
+              size={24}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
+
         </View>
       </View>
     </ScrollView>
