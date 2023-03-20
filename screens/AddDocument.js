@@ -29,10 +29,10 @@ const AddDocument = ({ navigation: { navigate } }) => {
   const [access, setAccess] = useState(false);
   const [user, setUser] = useState([]);
   const [isEnabled, setIsEnabled] = useState(false);
+ 
 
 
   useEffect(() => {
-    console.log(file);
   }, [file]);
 
   // async function requestExternalStoragePermission() {
@@ -64,22 +64,15 @@ const AddDocument = ({ navigation: { navigate } }) => {
       formData.append('file', file);
       formData.append('token', "test token");
       formData.append('access', isEnabled);
-      await axios.post('http://192.168.8.100:4000/document/add', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          }
-          })
+      console.log(API_BASE_URL+'document/add');
+      await axios.post(API_BASE_URL+'document/add',isEnabled)
       .then((res) => {
-        console.log(res.data);
         alert(res.data);
 
       }).catch((err) => {
         console.log(err);
         alert(err);
       })
-
-      // console.log(response.data);
-      // alert(response.data);
     } catch (err) {
       console.log(err);
       alert(err);
@@ -113,6 +106,8 @@ const AddDocument = ({ navigation: { navigate } }) => {
   };
 
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+
   return (
     <ScrollView>
       <View

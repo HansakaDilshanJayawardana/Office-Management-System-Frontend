@@ -80,15 +80,7 @@ const AppStack = () => {
           ),
         }}
       />
-      <Drawer.Screen
-        name="DocumentAddScreen"
-        component={AddDocument}
-        options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="document-add-outline" size={22} color={color} />
-          ),
-        }}
-      />
+    
     </Drawer.Navigator>
   );
 };
