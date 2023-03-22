@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import AppTextInput from "../components/AppTextInput";
 import { ScrollView } from "react-native-gesture-handler";
 
-const DocumentHomeScreen = ({ navigation: { navigate } }) => {
+const DocumentHomeScreen = ({ navigation: { navigate } }) => {z
   return (
     <ScrollView>
       <View

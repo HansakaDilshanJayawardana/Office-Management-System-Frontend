@@ -46,7 +46,7 @@ const InventoryHomeScreen = ({ navigation: { navigate } }) => {
                 textAlign: "center",
                 }}
             >
-                Welcome to the Invenories
+                Welcome to the Inventories
             </Text>
         </View>
 
@@ -78,7 +78,7 @@ const InventoryHomeScreen = ({ navigation: { navigate } }) => {
         </Text>
         </TouchableOpacity>
         <TouchableOpacity
-        onPress={() => navigate("ViewInventory")}
+        onPress={() => navigate("InventoryCard")}
         style={{
             padding: Spacing * 2,
             backgroundColor: Colors.primary,

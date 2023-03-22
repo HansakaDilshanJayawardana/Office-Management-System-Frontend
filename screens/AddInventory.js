@@ -39,11 +39,13 @@ const AddInventory = ({ navigation: { navigate } }) => {
     .then((res) => {
       console.log(res.data);
       if(res.data.success === true){
-        navigate("InventoryHomeScreen")
+        alert("Inventory Added Successfully");
+        navigate("InventoryHomeScreen");
       }
     })
     .catch((err) => {
       console.log(err);
+      alert("Inventory Not Added");
     })
     }
 
