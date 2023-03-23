@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -38,13 +31,15 @@ const AddEmployee = ({ navigation: { navigate } }) => {
     await axios.post(API_BASE_URL+'/employee/add', data)
     .then((res) => {
       console.log(res.data);
-      if(res.data.success === true){
-        navigate("EmployeeHomeScreen")
-      }
+      if (res.status === 201) {
+        alert("Employee Added Successfully!");
+        navigate("EmployeeHomeScreen");
+      } 
     })
     .catch((err) => {
       console.log(err);
-    })
+      alert(err.response.data.message);
+    });
   }
 
 return (
