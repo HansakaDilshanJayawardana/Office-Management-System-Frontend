@@ -54,7 +54,7 @@ const InventoryHomeScreen = ({ navigation: { navigate } }) => {
         onPress={() => navigate("AddInventory")}
         style={{
             padding: Spacing * 2,
-            backgroundColor: Colors.primary,
+            backgroundColor: "#000080",
             marginVertical: Spacing * 3,
             borderRadius: Spacing,
             shadowColor: Colors.primary,
@@ -81,7 +81,7 @@ const InventoryHomeScreen = ({ navigation: { navigate } }) => {
         onPress={() => navigate("InventoryCard")}
         style={{
             padding: Spacing * 2,
-            backgroundColor: Colors.primary,
+            backgroundColor: "#b0c4de",
             marginVertical: Spacing * 3,
             borderRadius: Spacing,
             shadowColor: Colors.primary,

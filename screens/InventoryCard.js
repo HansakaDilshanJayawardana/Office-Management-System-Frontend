@@ -14,6 +14,7 @@ import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import Font from "../constants/Font";
 import { ScrollView } from "react-native-gesture-handler";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { API_BASE_URL } from '../config';
 import axios from 'axios'
 
@@ -83,13 +84,11 @@ const InventoryCard = ({ navigation: { navigate } }) => {
           <View style={styles.card} key={index}>
             <Text style={styles.name}>Name:           {item.name}</Text>
             <Text style={styles.price}>Price:              {item.price}</Text>
-            <Text style={styles.price}>Quantity:         {item.quantity}</Text>
+            <Text style={styles.price}>Quantity:        {item.quantity}</Text>
             <Text style={styles.price}>Description:   {item.description}</Text>
-            <TouchableOpacity style={styles.delbtn} onPress={() => { deleteInventory(item._id) }}>
-              <Text style={styles.btnTxt}>Delete</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.updteBtn}>
-              <Text style={styles.btnTxt}>Update</Text>
+            <TouchableOpacity style={styles.buttonContainer}>
+                <Ionicons name="trash-outline" size={24} color="red" style={styles.leftIcon} onPress={() => { deleteInventory(item._id) }} />
+                <Ionicons name="pencil-outline" size={24} color="Colors.primary" style={styles.rightIcon} onPress={() => navigate("UpdateInventory", { inventory: item })} />
             </TouchableOpacity>
           </View>
         ))
@@ -107,7 +106,7 @@ const InventoryCard = ({ navigation: { navigate } }) => {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
-    backgroundColor: '#e7feff',
+    backgroundColor: '#87cefa',
     overflow: 'hidden',
     margin: 10,
     shadowColor: '#000',
@@ -116,14 +115,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   name: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 10,
     marginHorizontal: 10,
   },
   price: {
-    fontSize: 16,
-    color: '#888',
+    fontSize: 18,
     marginHorizontal: 10,
     marginBottom: 10,
   },
@@ -158,6 +156,21 @@ const styles = StyleSheet.create({
     borderRadius: Spacing,
     marginTop: 20,
    
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    marginBottom: 10
+  },
+  leftIcon: {
+      flex: 1,
+  },
+  rightIcon: {
+      color: "#000080",
+      flex: 1,
+      textAlign: 'right',
   },
 });
 export default InventoryCard;
