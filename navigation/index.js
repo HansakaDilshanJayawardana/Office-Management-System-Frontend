@@ -11,9 +11,12 @@ import Colors from "../constants/Colors";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
+import AppStack from "./AppStack";
 import AddInventory from "../screens/AddInventory";
-import AddEmployee from "../screens/AddEmployees";
-
+import ViewInventory from "../screens/ViewInventory";
+import InventoryHomeScreen from "../screens/InventoryHomeScreen";
+import AddEmployee from "../screens/AddEmployee";
+import EmployeeHomeScreen from "../screens/EmployeeHomeScreen";
 
 const theme = {
   ...DefaultTheme,
@@ -47,8 +50,16 @@ function RootNavigator() {
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen
+        name="HomeScreen"
+        component={AppStack}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="AddInventory" component={AddInventory}/>
+      <Stack.Screen name="ViewInventory" component={ViewInventory}/>
+      <Stack.Screen name="InventoryHomeScreen" component={InventoryHomeScreen}/>
       <Stack.Screen name="AddEmployee" component={AddEmployee}/>
+      <Stack.Screen name="EmployeeHomeScreen" component={EmployeeHomeScreen}/>
     </Stack.Navigator>
   );
 }
