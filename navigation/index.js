@@ -16,6 +16,7 @@ import AddInventory from "../screens/AddInventory";
 // import ViewInventory from "../screens/ViewInventory";
 import InventoryHomeScreen from "../screens/InventoryHomeScreen";
 import InventoryCard from "../screens/InventoryCard";
+import UpdateInventory from "../screens/UpdateInventory";
 
 
 const theme = {
@@ -59,6 +60,7 @@ function RootNavigator() {
       {/* <Stack.Screen name="ViewInventory" component={ViewInventory}/> */}
       <Stack.Screen name="InventoryHomeScreen" component={InventoryHomeScreen}/>
       <Stack.Screen name="InventoryCard" component={InventoryCard}/>
+      <Stack.Screen name="UpdateInventory" component={UpdateInventory}/>
 
     </Stack.Navigator>
   );
