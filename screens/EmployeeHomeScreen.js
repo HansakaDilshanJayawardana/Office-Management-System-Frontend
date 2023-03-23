@@ -1,4 +1,5 @@
 import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,6 +25,87 @@ const EmployeeHomeScreen = ({ navigation: { navigate } }) => {
         }}
       >
         <View
+        style={{
+          alignItems: "center",
+        }}
+        >
+          <Text
+          style={{
+            fontSize: FontSize.xLarge,
+            color: Colors.primary,
+            fontFamily: Font["poppins-bold"],
+            marginVertical: Spacing * 3,
+            textAlign: "center"
+          }}
+          >
+            Employee Home Screen
+          </Text>
+          <Text
+          style={{
+            fontFamily: Font["poppins-regular"],
+            fontSize: FontSize.small,
+            maxWidth: "80%",
+            textAlign: "center",
+          }}
+          >
+            Welcome to the Employee Management
+          </Text>
+        </View>
+        
+        <TouchableOpacity
+        onPress={() => navigate("AddEmployee")}
+        style={{
+          padding: Spacing * 2,
+          backgroundColor: Colors.primary,
+          marginVertical: Spacing * 3,
+          borderRadius: Spacing,
+          shadowColor: Colors.primary,
+          shadowOffset: {
+            width: 0,
+            height: Spacing,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: Spacing,
+        }}
+        >
+          <Text
+          style={{
+            fontFamily: Font["poppins-bold"],
+            color: Colors.onPrimary,
+            textAlign: "center",
+            fontSize: FontSize.large,
+          }}
+          >
+            Add Employee
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+        onPress={() => navigate("ViewAllEmployees")}
+        style={{
+          padding: Spacing * 2,
+          backgroundColor: Colors.primary,
+          marginVertical: Spacing * 3,
+          borderRadius: Spacing,
+          shadowColor: Colors.primary,
+          shadowOffset: {
+            width: 0,
+            height: Spacing,
+            },
+          shadowOpacity: 0.3,
+          shadowRadius: Spacing,
+        }}
+        >
+          <Text
+          style={{
+            fontFamily: Font["poppins-bold"],
+            color: Colors.onPrimary,
+            textAlign: "center",
+            fontSize: FontSize.large,
+          }}
+          >
+            View Employees
+          </Text>
+        </TouchableOpacity>
             style={{
                 alignItems: "center",
             }}

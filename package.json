@@ -23,7 +23,8 @@
     "react-native": "0.71.4",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-reanimated": "~2.14.4",
-    "react-native-web": "~0.18.10"
+    "react-native-web": "~0.18.10",
+    "react-navigation-header-buttons": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
