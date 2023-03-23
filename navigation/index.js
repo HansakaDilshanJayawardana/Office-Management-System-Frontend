@@ -21,6 +21,7 @@ import EmployeeHomeScreen from "../screens/EmployeeHomeScreen";
 import ViewAllEmployees from "../screens/ViewAllEmployees";
 import EmployeeDetails from "../screens/EmployeeDetails";
 import UpdateEmployee from "../screens/UpdateEmployee";
+import UpdateInventory from "../screens/UpdateInventory";
 
 const theme = {
   ...DefaultTheme,
@@ -68,6 +69,7 @@ function RootNavigator() {
       <Stack.Screen name="ViewAllEmployees" component={ViewAllEmployees}/>
       <Stack.Screen name="EmployeeDetails" component={EmployeeDetails}/>
       <Stack.Screen name="UpdateEmployee" component={UpdateEmployee}/>
+      <Stack.Screen name="UpdateInventory" component={UpdateInventory}/>
 
     </Stack.Navigator>
   );

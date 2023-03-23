@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,48 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import Font from "../constants/Font";
+import { Ionicons } from "@expo/vector-icons";
 import AppTextInput from "../components/AppTextInput";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { API_BASE_URL } from '../config';
+import { ScrollView } from "react-native-gesture-handler";
 
-const AddInventory = ({ navigation: { navigate } }) => {
-  const [name, setName] = useState("");
-  console.log(name);
-  const [quantity, setQuantity] = useState("");
-  console.log(quantity);
-  const [price, setPrice] = useState("");
-  console.log(price);
-  const [description, setDescription] = useState("");
-  console.log(description);
-
-  const addInventory = async () => {
-    const data = {
-      name: name,
-      quantity: quantity,
-      price: price,
-      description: description,
-    };
- 
-    await axios.post(API_BASE_URL+'/inventory/add', data)
-    .then((res) => {
-      console.log(res.data);
-      if(res.data.success === true){
-        alert("Inventory Added Successfully");
-        navigate("InventoryHomeScreen");
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      alert("Inventory Not Added");
-    })
-    }
-
+const InventoryHomeScreen = ({ navigation: { navigate } }) => {
   return (
     <ScrollView>
       <View
@@ -69,7 +36,7 @@ const AddInventory = ({ navigation: { navigate } }) => {
       marginVertical: Spacing * 3,
     }}
   >
-    Add Inventory
+    Inventory Home Screen
             </Text>
             <Text
                 style={{
@@ -79,24 +46,15 @@ const AddInventory = ({ navigation: { navigate } }) => {
                 textAlign: "center",
                 }}
             >
-                Add your new inventory items
+                Welcome to the Inventories
             </Text>
-        </View>
-        <View
-        style={{
-            marginVertical: Spacing * 3,
-        }}
-        >
-        <AppTextInput placeholder="Name" onChangeText={ (e) => setName(e) } />
-        <AppTextInput placeholder="Quantity" onChangeText={ (e) => setQuantity(e) } />
-        <AppTextInput placeholder="Price" onChangeText={ (e) => setPrice(e) } />
-        <AppTextInput placeholder="Description" onChangeText={ (e) => setDescription(e) } />
         </View>
 
         <TouchableOpacity
+        onPress={() => navigate("AddInventory")}
         style={{
             padding: Spacing * 2,
-            backgroundColor: Colors.primary,
+            backgroundColor: "#000080",
             marginVertical: Spacing * 3,
             borderRadius: Spacing,
             shadowColor: Colors.primary,
@@ -107,7 +65,6 @@ const AddInventory = ({ navigation: { navigate } }) => {
             shadowOpacity: 0.3,
             shadowRadius: Spacing,
         }}
-        onPress={() => addInventory()}
         >
         <Text
             style={{
@@ -117,7 +74,34 @@ const AddInventory = ({ navigation: { navigate } }) => {
             fontSize: FontSize.large,
             }}
         >
-            Add Now
+            Add Inventory
+        </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+        onPress={() => navigate("InventoryCard")}
+        style={{
+            padding: Spacing * 2,
+            backgroundColor: "#b0c4de",
+            marginVertical: Spacing * 3,
+            borderRadius: Spacing,
+            shadowColor: Colors.primary,
+            shadowOffset: {
+            width: 0,
+            height: Spacing,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: Spacing,
+        }}
+        >
+        <Text
+            style={{
+            fontFamily: Font["poppins-bold"],
+            color: Colors.onPrimary,
+            textAlign: "center",
+            fontSize: FontSize.large,
+            }}
+        >
+            View Inventories
         </Text>
         </TouchableOpacity>
       </View>
@@ -125,4 +109,4 @@ const AddInventory = ({ navigation: { navigate } }) => {
   );
 };
 
-export default AddInventory;
+export default InventoryHomeScreen;
