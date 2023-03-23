@@ -13,10 +13,14 @@ import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
 import AppStack from "./AppStack";
 import AddInventory from "../screens/AddInventory";
-import ViewInventory from "../screens/ViewInventory";
+// import ViewInventory from "../screens/ViewInventory";
 import InventoryHomeScreen from "../screens/InventoryHomeScreen";
+import InventoryCard from "../screens/InventoryCard";
 import AddEmployee from "../screens/AddEmployee";
 import EmployeeHomeScreen from "../screens/EmployeeHomeScreen";
+import ViewAllEmployees from "../screens/ViewAllEmployees";
+import EmployeeDetails from "../screens/EmployeeDetails";
+import UpdateEmployee from "../screens/UpdateEmployee";
 
 const theme = {
   ...DefaultTheme,
@@ -56,10 +60,15 @@ function RootNavigator() {
         options={{headerShown: false}}
       />
       <Stack.Screen name="AddInventory" component={AddInventory}/>
-      <Stack.Screen name="ViewInventory" component={ViewInventory}/>
+      {/* <Stack.Screen name="ViewInventory" component={ViewInventory}/> */}
       <Stack.Screen name="InventoryHomeScreen" component={InventoryHomeScreen}/>
+      <Stack.Screen name="InventoryCard" component={InventoryCard}/>
       <Stack.Screen name="AddEmployee" component={AddEmployee}/>
       <Stack.Screen name="EmployeeHomeScreen" component={EmployeeHomeScreen}/>
+      <Stack.Screen name="ViewAllEmployees" component={ViewAllEmployees}/>
+      <Stack.Screen name="EmployeeDetails" component={EmployeeDetails}/>
+      <Stack.Screen name="UpdateEmployee" component={UpdateEmployee}/>
+
     </Stack.Navigator>
   );
 }
