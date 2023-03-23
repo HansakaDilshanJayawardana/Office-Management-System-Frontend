@@ -13,8 +13,10 @@ import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
 import AppStack from "./AppStack";
 import AddInventory from "../screens/AddInventory";
-import ViewInventory from "../screens/ViewInventory";
+// import ViewInventory from "../screens/ViewInventory";
 import InventoryHomeScreen from "../screens/InventoryHomeScreen";
+import InventoryCard from "../screens/InventoryCard";
+
 
 const theme = {
   ...DefaultTheme,
@@ -54,8 +56,10 @@ function RootNavigator() {
         options={{headerShown: false}}
       />
       <Stack.Screen name="AddInventory" component={AddInventory}/>
-      <Stack.Screen name="ViewInventory" component={ViewInventory}/>
+      {/* <Stack.Screen name="ViewInventory" component={ViewInventory}/> */}
       <Stack.Screen name="InventoryHomeScreen" component={InventoryHomeScreen}/>
+      <Stack.Screen name="InventoryCard" component={InventoryCard}/>
+
     </Stack.Navigator>
   );
 }
