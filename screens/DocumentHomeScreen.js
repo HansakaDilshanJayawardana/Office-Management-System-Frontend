@@ -32,7 +32,7 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
 
 
   const getFiles = async () => {
-    await axios.get(API_BASE_URL + 'document/get/' + userID + '/')
+    await axios.get(API_BASE_URL + '/document/get/' + userID + '/')
       .then((res) => {
         //insert key to each object
         res.data.data.map((item, index) => {
@@ -49,7 +49,7 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
     //get document _id using key
     const documentID = files[key]._id;
 
-    await axios.delete(API_BASE_URL + 'document/delete/' + documentID)
+    await axios.delete(API_BASE_URL + '/document/delete/' + documentID)
       .then((res) => {
         alert("delete success");
         getFiles();

@@ -63,7 +63,7 @@ const AddDocument = ({ navigation: { navigate } }) => {
             user: '64126902c6d195b55d636a26'
           }
 
-          await axios.post(API_BASE_URL + 'document/add', data)
+          await axios.post(API_BASE_URL + '/document/add', data)
             .then((res) => {
               alert(res.data.message);
               navigate('DocumentHomeScreen');

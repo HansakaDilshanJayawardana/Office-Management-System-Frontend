@@ -31,4 +31,4 @@ export const storage = getStorage(app);
 
 
 export default firebase;
-export const API_BASE_URL = 'http://192.168.8.103:4000/';
+export const API_BASE_URL = 'http://192.168.8.103:4000';
