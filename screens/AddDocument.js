@@ -1,28 +1,17 @@
+import axios from 'axios';
+import * as DocumentPicker from 'expo-document-picker';
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { React, useEffect, useState } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Button,
-  PermissionsAndroid,
-  Switch,
-  Image,
+  Image, Switch, Text, TouchableOpacity,
+  View
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Spacing from "../constants/Spacing";
-import FontSize from "../constants/FontSize";
+import { API_BASE_URL, storage } from '../config';
 import Colors from "../constants/Colors";
 import Font from "../constants/Font";
-import AppTextInput from "../components/AppTextInput";
-import * as DocumentPicker from 'expo-document-picker';
-import { API_BASE_URL } from '../config';
-import axios from 'axios';
-import firebase from '../config';
-import { storage } from '../config';
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import FontSize from "../constants/FontSize";
+import Spacing from "../constants/Spacing";
 
 
 const AddDocument = ({ navigation: { navigate } }) => {

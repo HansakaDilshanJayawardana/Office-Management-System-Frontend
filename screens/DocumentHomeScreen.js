@@ -2,12 +2,10 @@ import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
 import {
-  Text, TouchableOpacity,
-  View,
   Image,
   RefreshControl,
-  StyleSheet,
-  TouchableHighlight,
+  StyleSheet, Text, TouchableHighlight, TouchableOpacity,
+  View
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { API_BASE_URL } from "../config";
@@ -16,9 +14,8 @@ import Font from "../constants/Font";
 import FontSize from "../constants/FontSize";
 import Spacing from "../constants/Spacing";
 
-import { SwipeListView } from 'react-native-swipe-list-view';
-import * as Linking from 'expo-linking';
 import { A } from '@expo/html-elements';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 
 const DocumentHomeScreen = ({ navigation: { navigate } }) => {
