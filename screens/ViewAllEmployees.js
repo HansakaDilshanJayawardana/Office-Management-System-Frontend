@@ -26,8 +26,8 @@ const ViewAllEmployees = ({ navigation: { navigate } }) => {
     }
 
     const deleteEmployee = async (id) => {
-        const confirmed = window.confirm("Are you sure you want to delete this employee?");
-        if (!confirmed) return;
+        // const confirmed = window.confirm("Are you sure you want to delete this employee?");
+        // if (!confirmed) return;
         
         try {
             await axios.delete(API_BASE_URL + '/employee/delete/' + id);
@@ -69,7 +69,7 @@ const ViewAllEmployees = ({ navigation: { navigate } }) => {
                     <Text style={styles.emptyText}>No employees found.</Text>
                 )}
                 <TouchableOpacity style={styles.addBtn}>
-                <Text style={styles.btnTxt} onPress={() => navigate("AddInventory")}>Add New Inventory</Text>
+                <Text style={styles.btnTxt} onPress={() => navigate("AddEmployee")}>Add New Employee</Text>
                 </TouchableOpacity>
             </View>   
         </ScrollView>
