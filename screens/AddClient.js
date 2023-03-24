@@ -54,7 +54,7 @@ return (
               fontFamily: Font["poppins-bold"],
               marginVertical: Spacing * 3
             }}>
-            Add Employee
+            Add Client
           </Text>
           <Text style={{
               fontFamily: Font["poppins-regular"],
