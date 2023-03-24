@@ -1,4 +1,4 @@
-import React from "react";
+import {React} from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,8 +14,40 @@ import Font from "../constants/Font";
 import { Ionicons } from "@expo/vector-icons";
 import AppTextInput from "../components/AppTextInput";
 import { ScrollView } from "react-native-gesture-handler";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from '../config';
+
 
 const LoginScreen = ({ navigation: { navigate } }) => {
+
+  const [email, setEmail] = useState("");
+  console.log(email);
+  const [password, setPassword] = useState("");
+  console.log(password);
+
+
+
+
+  const login = async () => {
+    const data = {
+      username: email,
+      password: password,
+    };
+ 
+    await axios.post(API_BASE_URL+'/user/login', data)
+    .then((res) => {
+      console.log(res.data);
+      if(res.data.success === true){
+        navigate("HomeScreen")
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    }
+    
+
   return (
     <ScrollView>
       <View
@@ -54,8 +86,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
             marginVertical: Spacing * 3,
           }}
         >
-          <AppTextInput placeholder="Email" />
-          <AppTextInput placeholder="Password" />
+          <AppTextInput placeholder="Email" onChangeText={ (e) => setEmail(e) } />
+          <AppTextInput placeholder="Password" onChangeText={(e) => setPassword(e)}/>
         </View>
 
         <View>
@@ -85,6 +117,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
             shadowOpacity: 0.3,
             shadowRadius: Spacing,
           }}
+          onPress={() => login()}
         >
           <Text
             style={{
