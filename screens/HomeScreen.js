@@ -6,6 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ImageBackground,
+  Dimensions,
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -15,6 +17,8 @@ import { Ionicons } from "@expo/vector-icons";
 import AppTextInput from "../components/AppTextInput";
 import { ScrollView } from "react-native-gesture-handler";
 
+const { height } = Dimensions.get("window");
+
 const HomeScreen = ({ navigation: { navigate } }) => {
   return (
     <ScrollView>
@@ -23,6 +27,13 @@ const HomeScreen = ({ navigation: { navigate } }) => {
           padding: Spacing * 2,
         }}
       >
+        <ImageBackground
+            style={{
+              height: height / 2,
+            }}
+            resizeMode="contain"
+            source={require("../assets/images/officee.jpg")}
+          />
         <View
             style={{
                 alignItems: "center",
@@ -37,6 +48,16 @@ const HomeScreen = ({ navigation: { navigate } }) => {
             }}
             >
                 App Home Page
+            </Text>
+            
+            <Text
+            style={{
+                fontSize: FontSize.small,
+                fontFamily: Font["poppins-bold"],
+                marginVertical: Spacing * 3,
+            }}
+            >
+                Swipe to right for main menu --
             </Text>
         </View>
       </View>
