@@ -27,6 +27,7 @@ import ClientHomeScreen from "../screens/ClientHomeScreen";
 import ViewAllClients from "../screens/ViewAllClients";
 import ClientDetails from "../screens/ClientDetails";
 import UpdateClient from "../screens/UpdateClient";
+import InventoryDetails from "../screens/InventoryDetails";
 
 const theme = {
   ...DefaultTheme,
@@ -80,6 +81,7 @@ function RootNavigator() {
       <Stack.Screen name="ViewAllClients" component={ViewAllClients}/>
       <Stack.Screen name="ClientDetails" component={ClientDetails}/>
       <Stack.Screen name="UpdateClient" component={UpdateClient}/>
+      <Stack.Screen name="InventoryDetails" component={InventoryDetails}/>
 
     </Stack.Navigator>
   );

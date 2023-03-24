@@ -79,9 +79,10 @@ const InventoryCard = ({ navigation: { navigate } }) => {
                 Here are your Inventories
             </Text>
         </View>
+        <View style={styles.cardContainer}>
         {inventories.length > 0 ? (
         inventories.map((item,index) => (
-          <View style={styles.card} key={index}>
+          <TouchableOpacity style={styles.card} key={index} onPress={() => navigate("InventoryDetails", { inventory: item })}>
             <Text style={styles.name}>Name:           {item.name}</Text>
             <Text style={styles.price}>Price:              {item.price}</Text>
             <Text style={styles.price}>Quantity:        {item.quantity}</Text>
@@ -90,7 +91,7 @@ const InventoryCard = ({ navigation: { navigate } }) => {
                 <Ionicons name="trash-outline" size={24} color="red" style={styles.leftIcon} onPress={() => { deleteInventory(item._id) }} />
                 <Ionicons name="pencil-outline" size={24} color="Colors.primary" style={styles.rightIcon} onPress={() => navigate("UpdateInventory", { inventory: item })} />
             </TouchableOpacity>
-          </View>
+            </TouchableOpacity>
         ))
         ):(
           <></>
@@ -98,7 +99,8 @@ const InventoryCard = ({ navigation: { navigate } }) => {
         <TouchableOpacity style={styles.addBtn}>
               <Text style={styles.btnTxt} onPress={() => navigate("AddInventory")}>Add New Inventory</Text>
             </TouchableOpacity>
-      </View>     
+      </View>   
+      </View>  
       </ScrollView>
   );
 };
@@ -171,6 +173,9 @@ const styles = StyleSheet.create({
       color: "#000080",
       flex: 1,
       textAlign: 'right',
+  },
+  cardContainer: {
+    paddingHorizontal: Spacing,
   },
 });
 export default InventoryCard;
