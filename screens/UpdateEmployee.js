@@ -80,7 +80,7 @@ const UpdateEmployee = ({ route, navigation: { navigate } }) => {
                     </Text>
                 </View>
                 <View style={{ marginVertical: Spacing * 3 }}>
-                    <AppTextInput placeholder={name} onChangeText={(text) => setName(text)} />
+                    <AppTextInput value={name} onChangeText={(text) => setName(text)} />
                     <Picker
                         selectedValue={gender}
                         onValueChange={(value) => setGender(value)}
@@ -94,10 +94,10 @@ const UpdateEmployee = ({ route, navigation: { navigate } }) => {
                         <Picker.Item label="Male" value="Male" />
                         <Picker.Item label="Female" value="Female" />
                     </Picker>
-                    <AppTextInput placeholder={nic} onChangeText={(text) => setNic(text)} />
-                    <AppTextInput placeholder={address} onChangeText={(text) => setAddress(text)} />
-                    <AppTextInput placeholder={contact} onChangeText={(text) => setContact(text)} />
-                    <AppTextInput placeholder={email} onChangeText={(text) => setEmail(text)} />
+                    <AppTextInput value={nic} onChangeText={(text) => setNic(text)} />
+                    <AppTextInput value={address} onChangeText={(text) => setAddress(text)} />
+                    <AppTextInput value={contact} onChangeText={(text) => setContact(text)} />
+                    <AppTextInput value={email} onChangeText={(text) => setEmail(text)} />
                 </View>
                 <TouchableOpacity style={{
                     padding: Spacing * 2,
