@@ -37,7 +37,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
  
 
     console.log(API_BASE_URL+'user/login');
-    await axios.post(API_BASE_URL+'user/login', data)
+    await axios.post(API_BASE_URL+'/user/login', data)
     .then((res) => {
       console.log(res.data);
       if(res.data.success === true){
