@@ -66,7 +66,7 @@ const ClientHomeScreen = ({ navigation: { navigate } }) => {
             fontSize: FontSize.large,
           }}
           >
-            Add Employee
+            Add Client
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
