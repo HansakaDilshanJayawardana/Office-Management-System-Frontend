@@ -22,6 +22,11 @@ import ViewAllEmployees from "../screens/ViewAllEmployees";
 import EmployeeDetails from "../screens/EmployeeDetails";
 import UpdateEmployee from "../screens/UpdateEmployee";
 import UpdateInventory from "../screens/UpdateInventory";
+import AddClient from "../screens/AddClient";
+import ClientHomeScreen from "../screens/ClientHomeScreen";
+import ViewAllClients from "../screens/ViewAllClients";
+import ClientDetails from "../screens/ClientDetails";
+import UpdateClient from "../screens/UpdateClient";
 
 const theme = {
   ...DefaultTheme,
@@ -70,6 +75,11 @@ function RootNavigator() {
       <Stack.Screen name="EmployeeDetails" component={EmployeeDetails}/>
       <Stack.Screen name="UpdateEmployee" component={UpdateEmployee}/>
       <Stack.Screen name="UpdateInventory" component={UpdateInventory}/>
+      <Stack.Screen name="AddClient" component={AddClient}/>
+      <Stack.Screen name="ClientHomeScreen" component={ClientHomeScreen}/>
+      <Stack.Screen name="ViewAllClients" component={ViewAllClients}/>
+      <Stack.Screen name="ClientDetails" component={ClientDetails}/>
+      <Stack.Screen name="UpdateClient" component={UpdateClient}/>
 
     </Stack.Navigator>
   );

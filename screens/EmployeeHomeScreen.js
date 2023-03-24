@@ -73,7 +73,7 @@ const EmployeeHomeScreen = ({ navigation: { navigate } }) => {
         onPress={() => navigate("ViewAllEmployees")}
         style={{
           padding: Spacing * 2,
-          backgroundColor: Colors.primary,
+          backgroundColor: '#b0c4de',
           marginVertical: Spacing * 3,
           borderRadius: Spacing,
           shadowColor: Colors.primary,

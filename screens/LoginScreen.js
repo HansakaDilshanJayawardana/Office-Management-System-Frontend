@@ -86,7 +86,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
             marginVertical: Spacing * 3,
           }}
         >
-          <AppTextInput placeholder="Email" onChangeText={ (e) => setEmail(e) } />
+          <AppTextInput placeholder="Username" onChangeText={ (e) => setEmail(e) } />
           <AppTextInput placeholder="Password" onChangeText={(e) => setPassword(e)}/>
         </View>
 
