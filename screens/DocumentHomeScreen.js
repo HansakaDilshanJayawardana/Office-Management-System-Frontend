@@ -6,6 +6,8 @@ import {
   View,
   Image,
   RefreshControl,
+  StyleSheet,
+  TouchableHighlight,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { API_BASE_URL } from "../config";
@@ -14,13 +16,18 @@ import Font from "../constants/Font";
 import FontSize from "../constants/FontSize";
 import Spacing from "../constants/Spacing";
 
+import { SwipeListView } from 'react-native-swipe-list-view';
+import * as Linking from 'expo-linking';
+import { A } from '@expo/html-elements';
+
+
 const DocumentHomeScreen = ({ navigation: { navigate } }) => {
 
   const [files, setFiles] = useState([]);
+  console.log("files", files)
   const [userID, setUserID] = useState('64126902c6d195b55d636a26');
   const [refreshing, setRefreshing] = useState(false);
 
-  console.log(files)
   //get all files
   useEffect(() => {
     getFiles();
@@ -28,9 +35,12 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
 
 
   const getFiles = async () => {
-    console.log("getting files");
     await axios.get(API_BASE_URL + 'document/get/' + userID + '/')
       .then((res) => {
+        //insert key to each object
+        res.data.data.map((item, index) => {
+          item.key = index.toString();
+        })
         setFiles(res.data.data);
       }).catch((err) => {
         console.log(err);
@@ -38,8 +48,21 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
       })
   }
 
+  const deleteDocument = async (key) => {
+    //get document _id using key
+    const documentID = files[key]._id;
+
+    await axios.delete(API_BASE_URL + 'document/delete/' + documentID)
+      .then((res) => {
+        alert("delete success");
+        getFiles();
+      }).catch((err) => {
+        console.log(err);
+        alert("delete error " + err);
+      })
+  }
+
   const onRefresh = () => {
-    console.log("refreshing");
     setRefreshing(true);
     // Your code to refresh the page goes here
     // For example, you could call a function that fetches new data and updates the state
@@ -47,9 +70,138 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
     setTimeout(() => setRefreshing(false), 2000); // Simulate a delay for demonstration purposes
   };
 
-  return (
-    <View
+  const closeRow = (rowMap, rowKey) => {
+    if (rowMap[rowKey]) {
+      rowMap[rowKey].closeRow();
+    }
+  };
 
+  const deleteRow = (rowMap, rowKey) => {
+    closeRow(rowMap, rowKey);
+
+    //aleart confirmation
+    alert("Are you sure you want to delete this document?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed")
+      },
+      {
+        text: "OK",
+        onPress: () => console.log("ok Pressed")
+      }
+    ]);
+
+    //delete document
+    deleteDocument(rowKey);
+  };
+
+  const onRowDidOpen = rowKey => {
+    console.log('This row opened', rowKey);
+  };
+
+  const renderItem = files => (
+
+    <TouchableHighlight
+      // onPress={() => Linking.openURL(files.item.url)}
+      style={styles.rowFront}
+      underlayColor={'#AAA'}
+    >
+      <A href={files.item.url}>
+        <View
+          style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', }}
+        >
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+          >
+            {
+
+              files.item.type === "application/pdf" ? (
+                <Image source={require('../assets/images/pdf.png')} style={{ width: 75, height: 75, marginRight: 10 }} />
+              ) : files.item.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ? (
+                <Image source={require('../assets/images/word.png')} style={{ width: 70, height: 70, marginRight: 15 }} />
+              ) : files.item.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ? (
+                <Image source={require('../assets/images/excel.png')} style={{ width: 70, height: 70, marginRight: 15 }} />
+              ) : files.item.type === "text/csv" ? (
+                <Image source={require('../assets/images/excel.png')} style={{ width: 70, height: 70, marginRight: 15 }} />
+              ) : files.item.type === "application/vnd.openxmlformats-officedocument.presentationml.presentation" ? (
+                <Image source={require('../assets/images/ppt.png')} style={{ width: 65, height: 65, marginRight: 20 }} />
+              ) : files.item.type === "image/jpeg" ? (
+                <Image source={require('../assets/images/jpg.png')} style={{ width: 75, height: 75, marginRight: 10 }} />
+              ) : (
+                <Image source={require('../assets/images/unknown.png')} style={{ width: 75, height: 75, marginRight: 10 }} />
+              )
+            }
+            <View
+              style={{
+                // display: "flex",
+                // flexDirection: "column",
+                // justifyContent: "space-between",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: FontSize.large,
+                  color: Colors.darkText,
+                  fontFamily: Font["poppins-regular"],
+                  overflow: "hidden",
+                  maxWidth: 300,
+                }}
+              >
+                {files.item.title}
+              </Text>
+              <Text
+                style={{
+                  fontSize: FontSize.large,
+                  color: Colors.darkText,
+                  fontFamily: Font["poppins-regular"],
+                }}
+              >
+                Access: {files.item.access}
+              </Text>
+              <Text
+                style={{
+                  fontSize: FontSize.large,
+                  color: Colors.darkText,
+                  fontFamily: Font["poppins-regular"],
+                }}
+              >
+                Size: {(files.item.size / (1000000)).toFixed(2)} MB
+              </Text>
+
+            </View>
+
+
+          </View>
+        </View>
+      </A>
+    </TouchableHighlight>
+  );
+
+  const renderHiddenItem = (files, rowMap) => (
+    <View style={styles.rowBack}>
+      {/* <Text>Left</Text> */}
+      <TouchableOpacity
+        style={[styles.backLeftBtn]}
+        onPress={() => closeRow(rowMap, files.item.key)}
+      >
+        <Text style={styles.backTextWhite}>update</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.backRightBtn, styles.backRightBtnRight]}
+        onPress={() => deleteRow(rowMap, files.item.key)}
+      >
+        <Text style={styles.backTextWhite}>Delete</Text>
+      </TouchableOpacity>
+    </View>
+  );
+  return (
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
     >
       <View
 
@@ -81,6 +233,7 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
             backgroundColor: Colors.lightPrimary,
             padding: Spacing * 2,
             borderRadius: 10,
+            marginBottom: Spacing * 2,
           }}
 
           onPress={() => navigate("AddDocument")}
@@ -115,14 +268,9 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
 
         {/* //display files  */}
         <ScrollView
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
-          }
+
         >
-          {
+          {/* {
             refreshing ? (
               <View
                 style={{
@@ -234,15 +382,87 @@ const DocumentHomeScreen = ({ navigation: { navigate } }) => {
                 </View>
               ))
             )
-          }
-
+          } */}
+          <View style={styles.container}>
+            <SwipeListView
+              data={files}
+              renderItem={renderItem}
+              renderHiddenItem={renderHiddenItem}
+              leftOpenValue={75}
+              rightOpenValue={-75}
+              previewRowKey={'0'}
+              previewOpenValue={-75}
+              previewOpenDelay={3000}
+              onRowDidOpen={onRowDidOpen}
+            />
+          </View>
         </ScrollView>
 
 
 
       </View>
-    </View>
+
+    </ScrollView>
   );
 };
+
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    borderRadius: Spacing,
+  },
+  backTextWhite: {
+    color: '#FFF',
+  },
+  rowFront: {
+
+    backgroundColor: Colors.background,
+    width: "100%",
+    borderRadius: Spacing,
+    elevation: 5, // this adds a shadow to the view
+    shadowColor: '#000', // shadow color
+    shadowOffset: { width: 0, height: 2 }, // shadow offset
+    shadowOpacity: 0.2, // shadow opacity
+    shadowRadius: 4, // shadow radius
+    padding: 20, // padding
+    marginBottom: Spacing,
+  },
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: '#DDD',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 15,
+    width: "98%",
+    borderRadius: Spacing,
+    height: 120,
+  },
+  backRightBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 75,
+    borderRadius: Spacing,
+  },
+  backLeftBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    top: 0,
+    position: 'absolute',
+    width: 75,
+    backgroundColor: 'blue',
+    borderRadius: Spacing,
+    justifyContent: 'center',
+  },
+  backRightBtnRight: {
+    backgroundColor: 'red',
+    right: 0,
+    borderRadius: Spacing,
+  },
+});
 
 export default DocumentHomeScreen;

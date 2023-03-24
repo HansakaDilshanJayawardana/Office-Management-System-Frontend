@@ -14,6 +14,7 @@ import Welcome from "../screens/WelcomeScreen";
 import AppStack from "./AppStack";
 import AddInventory from "../screens/AddInventory";
 import AddDocument from "../screens/AddDocument";
+import DocumentHomeScreen from "../screens/DocumentHomeScreen";
 
 const theme = {
   ...DefaultTheme,
@@ -47,12 +48,9 @@ function RootNavigator() {
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen
-        name="HomeScreen"
-        component={AppStack}
-        options={{headerShown: false}}
-      />
+      <Stack.Screen name="HomeScreen" component={AppStack} options={{headerShown: false}}/>
       <Stack.Screen name="AddInventory" component={AddInventory}/>
+      <Stack.Screen name="DocumentHomeScreen" component={DocumentHomeScreen}/>
       <Stack.Screen name="AddDocument" component={AddDocument}/>
     </Stack.Navigator>
   );

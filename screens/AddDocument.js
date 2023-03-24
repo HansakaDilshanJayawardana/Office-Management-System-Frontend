@@ -20,59 +20,73 @@ import AppTextInput from "../components/AppTextInput";
 import * as DocumentPicker from 'expo-document-picker';
 import { API_BASE_URL } from '../config';
 import axios from 'axios';
-
+import firebase from '../config';
+import { storage } from '../config';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 
 const AddDocument = ({ navigation: { navigate } }) => {
 
   const [file, setFile] = useState(null);
+  console.log(file)
   const [access, setAccess] = useState(false);
   const [user, setUser] = useState([]);
   const [isEnabled, setIsEnabled] = useState(false);
- 
+  const [downloadURL, setDownloadURL] = useState(null);
+
 
 
   useEffect(() => {
   }, [file]);
 
-  // async function requestExternalStoragePermission() {
-  //   try {
-  //     const granted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-  //       {
-  //         title: 'File Access Permission',
-  //         message: 'App needs access to your files',
-  //         buttonNeutral: 'Ask Me Later',
-  //         buttonNegative: 'Cancel',
-  //         buttonPositive: 'OK',
-  //       },
-  //     );
-  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-  //       console.log('External storage permission granted');
-  //     } else {
-  //       console.log('External storage permission denied');
-  //     }
-  //   } catch (err) {
-  //     console.warn(err);
-  //   }
-  // }
-
+  const UploadFile = (blobFile, fileName, isUploadCompleted) => {
+    if (!blobFile) return;
+    const sotrageRef = ref(storage, `myDocs/${fileName}`); //LINE A
+    const uploadTask = uploadBytesResumable(sotrageRef, blobFile); //LINE B
+    uploadTask.on(
+      "state_changed", null,
+      (error) => console.log(error),
+      async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => { //LINE C
+          console.log("File available at", downloadURL);
+          setDownloadURL(downloadURL);
+          isUploadCompleted(true)
+          return downloadURL
+        });
+      }
+    );
+  }
 
   const handleFileUpload = async () => {
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('token', "test token");
-      formData.append('access', isEnabled);
-      console.log(API_BASE_URL+'document/add');
-      await axios.post(API_BASE_URL+'document/add',isEnabled)
-      .then((res) => {
-        alert(res.data);
+      const blobFile = new Blob([file], { type: file.mimeType });
+      console.log("blob file" + blobFile)
 
-      }).catch((err) => {
-        console.log(err);
-        alert(err);
-      })
+      UploadFile(blobFile, file.name, async (isUploadCompleted) => {
+        if (isUploadCompleted) {
+
+          data = {
+            title: file.name,
+            url: downloadURL,
+            type: file.mimeType,
+            size: file.size,
+            access: isEnabled ? 'public' : 'private',
+            user: '64126902c6d195b55d636a26'
+          }
+
+          await axios.post(API_BASE_URL + 'document/add', data)
+            .then((res) => {
+              alert(res.data.message);
+              navigate('DocumentHomeScreen');
+            }).catch((err) => {
+              console.log(err);
+              // alert(err);
+            })
+
+        }
+      });
+
+
     } catch (err) {
       console.log(err);
       alert(err);
@@ -86,12 +100,6 @@ const AddDocument = ({ navigation: { navigate } }) => {
         type: '*/*',
         copyToCacheDirectory: false,
       });
-      console.log(
-        result.uri,
-        result.type, // mime type
-        result.name,
-        result.size
-      );
       //set File
       setFile(result);
     } catch (err) {
@@ -245,21 +253,21 @@ const AddDocument = ({ navigation: { navigate } }) => {
             style={[
               {
                 marginVertical: Spacing * 3,
-              backgroundColor: Colors.lightPrimary,
-              width: "100%",
-              padding: Spacing * 2,
-              borderRadius: Spacing,
-              elevation: 5, // this adds a shadow to the view
-              shadowColor: '#000', // shadow color
-              shadowOffset: { width: 0, height: 2 }, // shadow offset
-              shadowOpacity: 0.2, // shadow opacity
-              shadowRadius: 4, // shadow radius
-              padding: 20, // padding
-                
+                backgroundColor: Colors.lightPrimary,
+                width: "100%",
+                padding: Spacing * 2,
+                borderRadius: Spacing,
+                elevation: 5, // this adds a shadow to the view
+                shadowColor: '#000', // shadow color
+                shadowOffset: { width: 0, height: 2 }, // shadow offset
+                shadowOpacity: 0.2, // shadow opacity
+                shadowRadius: 4, // shadow radius
+                padding: 20, // padding
+
               },
             ]}
             title="Upload File" onPress={() => selectFile()} >
-            <Text style={{ fontFamily: Font["poppins-regular"] }}>Tap Here to Upload File</Text>
+            <Text style={{ fontFamily: Font["poppins-regular"] }}>Tap Here to Select File</Text>
 
 
           </TouchableOpacity>
