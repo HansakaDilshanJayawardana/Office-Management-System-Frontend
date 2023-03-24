@@ -1,19 +1,17 @@
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import CustomDrawer from '../components/CustomDrawer';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Spacing from "../constants/Spacing";
-import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import Font from "../constants/Font";
 
-import InventoryHomeScreen from '../screens/InventoryHomeScreen';
-import EmployeeHomeScreen from '../screens/EmployeeHomeScreen';
 import ClientHomeScreen from '../screens/ClientHomeScreen';
 import DocumentHomeScreen from '../screens/DocumentHomeScreen';
+import EmployeeHomeScreen from '../screens/EmployeeHomeScreen';
 import HomeScreen from '../screens/HomeScreen';
+import InventoryHomeScreen from '../screens/InventoryHomeScreen';
 
 // import TabNavigator from './TabNavigator';
 
@@ -79,6 +77,7 @@ const AppStack = () => {
           ),
         }}
       />
+    
     </Drawer.Navigator>
   );
 };

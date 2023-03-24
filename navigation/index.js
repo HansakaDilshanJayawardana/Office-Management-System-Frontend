@@ -28,6 +28,8 @@ import ViewAllClients from "../screens/ViewAllClients";
 import ClientDetails from "../screens/ClientDetails";
 import UpdateClient from "../screens/UpdateClient";
 import InventoryDetails from "../screens/InventoryDetails";
+import AddDocument from "../screens/AddDocument";
+import DocumentHomeScreen from "../screens/DocumentHomeScreen";
 
 const theme = {
   ...DefaultTheme,
@@ -57,15 +59,11 @@ function RootNavigator() {
       screenOptions={{
         headerShown: false,
       }}
-    >
+      >
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen
-        name="HomeScreen"
-        component={AppStack}
-        options={{headerShown: false}}
-      />
+      <Stack.Screen name="HomeScreen" component={AppStack} options={{headerShown: false}}/>
       <Stack.Screen name="AddInventory" component={AddInventory}/>
       {/* <Stack.Screen name="ViewInventory" component={ViewInventory}/> */}
       <Stack.Screen name="InventoryHomeScreen" component={InventoryHomeScreen}/>
@@ -83,6 +81,8 @@ function RootNavigator() {
       <Stack.Screen name="UpdateClient" component={UpdateClient}/>
       <Stack.Screen name="InventoryDetails" component={InventoryDetails}/>
 
+      <Stack.Screen name="DocumentHomeScreen" component={DocumentHomeScreen}/>
+      <Stack.Screen name="AddDocument" component={AddDocument}/>
     </Stack.Navigator>
   );
 }
