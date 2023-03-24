@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     },
     card: {
         borderRadius: 10,
-        backgroundColor: '#e7feff',
+        backgroundColor: '#87cefa',
         overflow: 'hidden',
         margin: 10,
         shadowColor: '#000',
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     cardTitle: {
-        fontFamily: Font["poppins-medium"],
+        fontFamily: Font["poppins-bold"],
         fontSize: FontSize.large,
         fontWeight: 'bold',
         color: Colors.primary,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     cardDescription: {
-        fontFamily: Font["poppins-regular"],
+        fontFamily: Font["poppins-semiBold"],
         fontSize: FontSize.small,
         color: Colors.text,
         marginTop: Spacing,
