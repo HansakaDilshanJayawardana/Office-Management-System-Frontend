@@ -10,6 +10,7 @@ import axios from "axios";
 import { API_BASE_URL } from '../config';
 import { Picker } from '@react-native-picker/picker';
 
+//navigate to update
 const UpdateEmployee = ({ route, navigation: { navigate } }) => {
     const { employee } = route.params;
     const [name, setName] = useState("");
@@ -32,6 +33,7 @@ const UpdateEmployee = ({ route, navigation: { navigate } }) => {
         setLoading(false);
     }, []);
 
+    
     const updateEmployee = async () => {
         setLoading(true);
         const data = {
@@ -52,6 +54,7 @@ const UpdateEmployee = ({ route, navigation: { navigate } }) => {
                 navigate("EmployeeHomeScreen");
             } 
         })
+        //error if doesnt execute
         .catch((err) => {
             console.log(err);
             alert(err.response.data.message);
