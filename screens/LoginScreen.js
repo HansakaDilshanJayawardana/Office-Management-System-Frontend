@@ -1,9 +1,7 @@
 import {React} from "react";
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -22,13 +20,9 @@ import { API_BASE_URL } from '../config';
 const LoginScreen = ({ navigation: { navigate } }) => {
 
   const [email, setEmail] = useState("");
-  console.log(email);
   const [password, setPassword] = useState("");
-  console.log(password);
 
-
-
-
+  //Function to Login 
   const login = async () => {
     const data = {
       username: email,
@@ -84,6 +78,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
             Welcome back you've been missed!
           </Text>
         </View>
+
+        {/* Login Form */}
         <View
           style={{
             marginVertical: Spacing * 3,
@@ -106,6 +102,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
           </Text>
         </View>
 
+        {/* Button to Login and navigate to the Home Screen */}
         <TouchableOpacity
           style={{
             padding: Spacing * 2,
@@ -133,6 +130,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
             Sign in
           </Text>
         </TouchableOpacity>
+
+        {/* Button to navigate to thr Register page */}
         <TouchableOpacity
           onPress={() => navigate("Register")}
           style={{
@@ -174,6 +173,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
               justifyContent: "center",
             }}
           >
+            {/* Button to continue with google */}
             <TouchableOpacity
               style={{
                 padding: Spacing,
@@ -188,6 +188,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
             size={Spacing * 2}
           />
         </TouchableOpacity>
+
+        {/* Button to continue with Apple ICloud */}
         <TouchableOpacity
           style={{
             padding: Spacing,
@@ -202,6 +204,8 @@ const LoginScreen = ({ navigation: { navigate } }) => {
                 size={Spacing * 2}
             />
             </TouchableOpacity>
+
+            {/* Button to continue with Facebook */}
             <TouchableOpacity
             style={{
                 padding: Spacing,
