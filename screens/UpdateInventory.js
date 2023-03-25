@@ -1,9 +1,6 @@
 import React from "react";
 import {
-    SafeAreaView,
-    StyleSheet,
     Text,
-    TextInput,
     TouchableOpacity,
     View,
   } from "react-native";
@@ -18,17 +15,11 @@ import {
   import { API_BASE_URL } from '../config';
 
   const UpdateInventory = ({ route, navigation: { navigate } }) => {
-    // if(!inventory)
-    // inventory = {};
 
     const [name, setName] = useState("");
-    console.log(name);
     const [quantity, setQuantity] = useState("");
-    console.log(quantity);
     const [price, setPrice] = useState("");
-    console.log(price);
     const [description, setDescription] = useState("");
-    console.log(description);
     const [inventoryId, setInventoryId] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -42,6 +33,7 @@ import {
         setLoading(false);
     }, []);
 
+    //Function to Update the Inventory Items by Id
     const updateInventory = async () => {
         setLoading(true);
         const data = {
@@ -99,6 +91,8 @@ import {
                     Update your inventory here
                 </Text>
             </View>
+
+            {/* Form to Update Inventory Items */}
             <View
             style={{
                 marginVertical: Spacing * 3,
@@ -110,6 +104,7 @@ import {
             <AppTextInput value={description} onChangeText={ (e) => setDescription(e) } />
             </View>
     
+            {/* Button to Update Inventory Item and navigate to the Inventory Home Screen  */}
             <TouchableOpacity
             style={{
                 padding: Spacing * 2,

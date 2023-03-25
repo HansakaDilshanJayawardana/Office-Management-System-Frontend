@@ -1,13 +1,9 @@
 import React, { useState, useEffect }  from "react";
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
-  FlatList,
-  VirtualizedList
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -25,6 +21,7 @@ const InventoryCard = ({ navigation: { navigate } }) => {
     getInventories();
   }, []);
 
+  //Retrieve Inventory Function
   const getInventories = async () => {
     await axios.get(API_BASE_URL+'/inventory/get')
     .then((res) => {
@@ -35,7 +32,7 @@ const InventoryCard = ({ navigation: { navigate } }) => {
       });
   }
 
-  //Delete Items in the Cart by id Function
+  //Delete Items in the Inventory by id Function
   const deleteInventory = async (id) => {
     await axios.delete(API_BASE_URL+'/inventory/delete/' + id)
       .then((res) => {
@@ -79,16 +76,21 @@ const InventoryCard = ({ navigation: { navigate } }) => {
                 Here are your Inventories
             </Text>
         </View>
+
+        {/* Inventory Cards */}
         <View style={styles.cardContainer}>
         {inventories.length > 0 ? (
         inventories.map((item,index) => (
+          // Button to see the specific detais of the individual Inventory Items
           <TouchableOpacity style={styles.card} key={index} onPress={() => navigate("InventoryDetails", { inventory: item })}>
             <Text style={styles.name}>Name:           {item.name}</Text>
             <Text style={styles.price}>Price:              {item.price}</Text>
             <Text style={styles.price}>Quantity:        {item.quantity}</Text>
             <Text style={styles.price}>Description:   {item.description}</Text>
             <TouchableOpacity style={styles.buttonContainer}>
+                {/* Delete Icon */}
                 <Ionicons name="trash-outline" size={24} color="red" style={styles.leftIcon} onPress={() => { deleteInventory(item._id) }} />
+                {/* Update Icon */}
                 <Ionicons name="pencil-outline" size={24} color="Colors.primary" style={styles.rightIcon} onPress={() => navigate("UpdateInventory", { inventory: item })} />
             </TouchableOpacity>
             </TouchableOpacity>
@@ -96,6 +98,8 @@ const InventoryCard = ({ navigation: { navigate } }) => {
         ):(
           <></>
         )}
+
+        {/* Button to navigate to the Add Inventory Screen */}
         <TouchableOpacity style={styles.addBtn}>
               <Text style={styles.btnTxt} onPress={() => navigate("AddInventory")}>Add New Inventory</Text>
             </TouchableOpacity>
