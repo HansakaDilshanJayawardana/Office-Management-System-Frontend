@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -19,14 +16,11 @@ import { API_BASE_URL } from '../config';
 
 const AddInventory = ({ navigation: { navigate } }) => {
   const [name, setName] = useState("");
-  console.log(name);
   const [quantity, setQuantity] = useState("");
-  console.log(quantity);
   const [price, setPrice] = useState("");
-  console.log(price);
   const [description, setDescription] = useState("");
-  console.log(description);
 
+  //Function to Add new Inventory Items
   const addInventory = async () => {
     const data = {
       name: name,
@@ -82,6 +76,8 @@ const AddInventory = ({ navigation: { navigate } }) => {
                 Add your new inventory items
             </Text>
         </View>
+
+        {/* Form to Add new Inventory Items */}
         <View
         style={{
             marginVertical: Spacing * 3,
@@ -93,6 +89,7 @@ const AddInventory = ({ navigation: { navigate } }) => {
         <AppTextInput placeholder="Description" onChangeText={ (e) => setDescription(e) } />
         </View>
 
+        {/* Button to Add new Inventory Items and navigate to the Inventory Home Screen */}
         <TouchableOpacity
         style={{
             padding: Spacing * 2,

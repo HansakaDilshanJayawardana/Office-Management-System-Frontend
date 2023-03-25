@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  SafeAreaView,
-  StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -11,8 +8,6 @@ import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import Font from "../constants/Font";
-import { Ionicons } from "@expo/vector-icons";
-import AppTextInput from "../components/AppTextInput";
 import { ScrollView } from "react-native-gesture-handler";
 
 const InventoryHomeScreen = ({ navigation: { navigate } }) => {
@@ -50,6 +45,7 @@ const InventoryHomeScreen = ({ navigation: { navigate } }) => {
             </Text>
         </View>
 
+        {/* Button to navigate to the Add Inventory Screen */}
         <TouchableOpacity
         onPress={() => navigate("AddInventory")}
         style={{
@@ -77,6 +73,8 @@ const InventoryHomeScreen = ({ navigation: { navigate } }) => {
             Add Inventory
         </Text>
         </TouchableOpacity>
+
+        {/* Button to navigate to the Inventory Cards Page */}
         <TouchableOpacity
         onPress={() => navigate("InventoryCard")}
         style={{

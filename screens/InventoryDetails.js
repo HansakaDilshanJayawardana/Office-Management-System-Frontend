@@ -13,6 +13,7 @@ const InventoryDetails = ({ route, navigation: { navigate } }) => {
         setLoading(false);
     }, []);
     
+    //Function to navigate to the Inventory Cards Screen
     const goBack = async () => {
         navigate("InventoryCard");
     }
@@ -32,6 +33,8 @@ const InventoryDetails = ({ route, navigation: { navigate } }) => {
             }}>
                 {inventory.name}
             </Text>
+
+            {/* Details of an individual Inventory Item */}
             <View style={styles.detailsContainer}>
                 <Text style={styles.title}>Quantity:</Text>
                 <Text style={styles.value}>{inventory.quantity}</Text>
@@ -42,7 +45,9 @@ const InventoryDetails = ({ route, navigation: { navigate } }) => {
                 <Text style={styles.title}>Added Date:</Text>
                 <Text style={styles.value}>{inventory.createdAt}</Text>
             </View>
-            <View style={styles.header}>
+            <View style={styles.header}
+            >
+                {/* Button to navigate to the Inventory Card Screen */}
                 <TouchableOpacity
                 onPress={() => goBack()}
                 style={styles.backButton}
