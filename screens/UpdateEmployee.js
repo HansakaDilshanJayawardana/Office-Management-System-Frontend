@@ -42,7 +42,8 @@ const UpdateEmployee = ({ route, navigation: { navigate } }) => {
         contact: contact,
         email: email
         };
-    
+
+        // API Binding of Update Employee
         await axios.put(`${API_BASE_URL}/employee/update/${employeeId}`, data)
         .then((res) => {
             console.log(res.data);

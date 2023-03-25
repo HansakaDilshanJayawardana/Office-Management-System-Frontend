@@ -46,6 +46,7 @@ const UpdateClient = ({ route, navigation: { navigate } }) => {
         email: email
         };
     
+        // API Binding of Update Client
         await axios.put(`${API_BASE_URL}/client/update/${clientId}`, data)
         .then((res) => {
             console.log(res.data);

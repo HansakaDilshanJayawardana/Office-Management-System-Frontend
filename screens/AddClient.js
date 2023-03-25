@@ -30,6 +30,7 @@ const AddClient = ({ navigation: { navigate } }) => {
       email: email
     };
  
+    // API Binding of Add Client
     await axios.post(API_BASE_URL+'/client/add', data)
     .then((res) => {
       console.log(res.data);

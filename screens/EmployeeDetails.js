@@ -13,6 +13,7 @@ const EmployeeDetails = ({ route, navigation: { navigate } }) => {
         setLoading(false);
     }, []);
     
+    // Back Navigation
     const goBack = async () => {
         navigate("ViewAllEmployees");
     }

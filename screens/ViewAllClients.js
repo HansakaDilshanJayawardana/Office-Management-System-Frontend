@@ -15,6 +15,7 @@ const ViewAllClients = ({ navigation: { navigate } }) => {
         getClients();
     }, []);
     
+    // API Binding of View All Clients
     const getClients = async () => {
         await axios.get(API_BASE_URL + '/client/get-all')
         .then((res) => {
@@ -25,10 +26,8 @@ const ViewAllClients = ({ navigation: { navigate } }) => {
         });
     }
 
+    // API Binding of Delete Client
     const deleteClient = async (id) => {
-        // const confirmed = window.confirm("Are you sure you want to delete this client?");
-        // if (!confirmed) return;
-        
         try {
             await axios.delete(API_BASE_URL + '/client/delete/' + id);
             alert("Client Deleted Successfully!");
@@ -51,6 +50,7 @@ const ViewAllClients = ({ navigation: { navigate } }) => {
                         <TouchableOpacity
                             style={styles.card}
                             key={index}
+                            // Click on the card to navigate client details
                             onPress={() => navigate("ClientDetails", { client: item })}
                         >
                             <Text style={styles.cardTitle}>{item.firstName} {item.lastName}</Text>
@@ -59,6 +59,7 @@ const ViewAllClients = ({ navigation: { navigate } }) => {
                             <Text style={styles.cardDescription}>{item.address}</Text>
                             <Text style={styles.cardDescription}>{item.mobile}</Text>
                             <Text style={styles.cardDescription}>{item.email}</Text>
+                            {/* Delete Button & Update Button */}
                             <TouchableOpacity style={styles.buttonContainer}>
                                 <Ionicons name="trash-outline" size={24} color="red" style={styles.leftIcon} onPress={() => { deleteClient(item._id) }} />
                                 <Ionicons name="pencil-outline" size={24} color="Colors.primary" style={styles.rightIcon} onPress={() => navigate("UpdateClient", { client: item })} />
@@ -76,6 +77,7 @@ const ViewAllClients = ({ navigation: { navigate } }) => {
     );
 };
 
+// Style Sheet
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -28,6 +28,7 @@ const AddEmployee = ({ navigation: { navigate } }) => {
       email: email
     };
  
+    // API Binding of Add Employee
     await axios.post(API_BASE_URL+'/employee/add', data)
     .then((res) => {
       console.log(res.data);

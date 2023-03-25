@@ -15,6 +15,7 @@ const ViewAllEmployees = ({ navigation: { navigate } }) => {
         getEmployees();
     }, []);
     
+    // API Binding of View All Employees
     const getEmployees = async () => {
         await axios.get(API_BASE_URL + '/employee/get-all')
         .then((res) => {
@@ -25,10 +26,8 @@ const ViewAllEmployees = ({ navigation: { navigate } }) => {
         });
     }
 
+    // API Binding of Delete Employee
     const deleteEmployee = async (id) => {
-        // const confirmed = window.confirm("Are you sure you want to delete this employee?");
-        // if (!confirmed) return;
-        
         try {
             await axios.delete(API_BASE_URL + '/employee/delete/' + id);
             alert("Employee Deleted Successfully!");
@@ -51,6 +50,7 @@ const ViewAllEmployees = ({ navigation: { navigate } }) => {
                         <TouchableOpacity
                             style={styles.card}
                             key={index}
+                            // Click on the card to navigate employee details 
                             onPress={() => navigate("EmployeeDetails", { employee: item })}
                         >
                             <Text style={styles.cardTitle}>{item.name}</Text>
@@ -59,6 +59,7 @@ const ViewAllEmployees = ({ navigation: { navigate } }) => {
                             <Text style={styles.cardDescription}>{item.address}</Text>
                             <Text style={styles.cardDescription}>{item.contact}</Text>
                             <Text style={styles.cardDescription}>{item.email}</Text>
+                            {/* Delete Button & Update Button */}                            
                             <TouchableOpacity style={styles.buttonContainer}>
                                 <Ionicons name="trash-outline" size={24} color="red" style={styles.leftIcon} onPress={() => { deleteEmployee(item._id) }} />
                                 <Ionicons name="pencil-outline" size={24} color="Colors.primary" style={styles.rightIcon} onPress={() => navigate("UpdateEmployee", { employee: item })} />
@@ -76,6 +77,7 @@ const ViewAllEmployees = ({ navigation: { navigate } }) => {
     );
 };
 
+// Style Sheet
 const styles = StyleSheet.create({
     container: {
         flex: 1,
